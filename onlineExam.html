@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Грамотей - Онлайн экзамен</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Hide Google warning banner */
+        #warning {
+            display: none !important;
+        }
+
+        /* Iframe container */
+        .iframe-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Загрузка экзамена...</div>
+    </div>
+
+    <div class="iframe-container">
+        <iframe
+            id="examFrame"
+            src="https://script.google.com/macros/s/AKfycbzeuZlG0D95CkHEJ771YthSNKj9vqk0F5AbyLrYKJ6e18eoYkgN-s79AjasGjDllUZrWQ/exec"
+            allow="clipboard-write">
+        </iframe>
+    </div>
+
+    <script>
+        // Hide loading overlay after iframe loads
+        const iframe = document.getElementById('examFrame');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        iframe.addEventListener('load', function() {
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 500);
+        });
+
+        // Fallback: hide loading after 5 seconds if load event doesn't fire
+        setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+        }, 5000);
+
+        // Try to hide warning banner inside iframe (may be blocked by CORS)
+        iframe.addEventListener('load', function() {
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const warningElement = iframeDoc.getElementById('warning');
+                if (warningElement) {
+                    warningElement.style.display = 'none';
+                }
+            } catch (e) {
+                // CORS will block this, but the CSS rule should work
+                console.log('Cannot access iframe content due to CORS policy');
+            }
+        });
+    </script>
+</body>
+
+</html>

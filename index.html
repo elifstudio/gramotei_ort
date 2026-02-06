@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Грамотей - Подготовка к ОРТ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:first-of-type {
+            margin-top: 60px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1F2937;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #cd7d53 0%, #1f2937 100%);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Home Section */
+        #home {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.05) 0%, rgba(205, 125, 83, 0.1) 100%);
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #home .subtitle {
+            font-size: 1.3rem;
+            color: #cd7d53;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #cd7d53;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(205, 125, 83, 0.2);
+        }
+
+        .feature-card h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card:nth-child(odd) {
+            border-left-color: #1f2937;
+        }
+
+        .feature-card:nth-child(odd):hover {
+            box-shadow: 0 6px 12px rgba(31, 41, 55, 0.2);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #cd7d53 0%, #1f2937 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(205, 125, 83, 0.4);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #f5f5f5;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: #cd7d53;
+            transform: translateY(-3px);
+        }
+
+        .contact-item h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item:nth-child(even) h3 {
+            color: #cd7d53;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            #home h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Urmaliev Askat">
+                <span class="logo-text">GRAMOTEI</span>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" onclick="closeMenu()">Главная</a></li>
+                <li><a href="#about" onclick="closeMenu()">О нас</a></li>
+                <li><a href="#exam" onclick="closeMenu()">Онлайн экзамен</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Грамотей</h1>
+        <p class="subtitle">Курсы GRAMOTEI - подготовка к ОРТ</p>
+        <p>Профессиональная подготовка к общереспубликанскому тестированию</p>
+        <p style="max-width: 800px; margin: 2rem auto;">Мы предлагаем комплексную программу подготовки к ОРТ с использованием современных методик обучения. Наши студенты получают доступ к качественным учебным материалам, пробным тестам и профессиональной поддержке опытных преподавателей.</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>О нас</h2>
+        <p>GRAMOTEI - это образовательные курсы, специализирующиеся на подготовке студентов к ОРТ (Общереспубликанское тестирование) в Кыргызстане.</p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>📚 Качественные материалы</h3>
+                <p>Актуальные учебные материалы и тесты, соответствующие требованиям ОРТ</p>
+            </div>
+            <div class="feature-card">
+                <h3>💻 Онлайн тестирование</h3>
+                <p>Удобная система онлайн экзаменов с мгновенной проверкой результатов</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Отслеживание прогресса</h3>
+                <p>Детальная статистика ваших результатов и рекомендации по улучшению</p>
+            </div>
+            <div class="feature-card">
+                <h3>👨‍🏫 Опытные преподаватели</h3>
+                <p>Квалифицированные педагоги с многолетним опытом подготовки к ОРТ</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 Высокие результаты</h3>
+                <p>Наши студенты показывают высокие баллы на реальных экзаменах</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Доступность</h3>
+                <p>Учитесь в любое время с любого устройства - компьютер, планшет или телефон</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Exam Section -->
+    <section id="exam">
+        <h2>Онлайн экзамен</h2>
+        <p>Пройдите пробное тестирование в формате реального ОРТ. Наша система позволяет:</p>
+        <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+            <li>Проходить тесты по всем предметам ОРТ</li>
+            <li>Работать с PDF-файлами заданий как на реальном экзамене</li>
+            <li>Получать мгновенные результаты с указанием правильных и неправильных ответов</li>
+            <li>Отслеживать свой прогресс и улучшать результаты</li>
+        </ul>
+        <p style="margin-bottom: 2rem;">Система автоматически проверяет ваши ответы и сохраняет результаты. Каждый тест можно проходить только один раз, что максимально приближено к реальным условиям экзамена.</p>
+        <a href="onlineExam.html" class="btn" target="_blank"><span>Перейти к экзамену</span></a>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Контакты</h2>
+        <p>Свяжитесь с нами для получения дополнительной информации о курсах GRAMOTEI</p>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>📞 Телефон</h3>
+                <p>+996 XXX XXX XXX</p>
+            </div>
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p>info@gramotei.kg</p>
+            </div>
+            <div class="contact-item">
+                <h3>📍 Адрес</h3>
+                <p>г. Бишкек, Кыргызстан</p>
+            </div>
+            <div class="contact-item">
+                <h3>⏰ Часы работы</h3>
+                <p>Пн-Сб: 9:00 - 18:00</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+
+            if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
