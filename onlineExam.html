@@ -77,7 +77,6 @@
             margin-top: 1rem;
             font-size: 1.2rem;
         }
-
     </style>
 </head>
 
@@ -88,8 +87,7 @@
     </div>
 
     <div class="iframe-container">
-        <iframe
-            id="examFrame"
+        <iframe id="examFrame"
             src="https://script.google.com/macros/s/AKfycbzNNiBecfq3HCuOtXu9Iwtn51ttlaG6RH2DtmXILQI_M4PHYjCIlKzlm84FAlOW14_Ngw/exec"
             allow="clipboard-write">
         </iframe>
@@ -100,7 +98,7 @@
         const iframe = document.getElementById('examFrame');
         const loadingOverlay = document.getElementById('loadingOverlay');
 
-        iframe.addEventListener('load', function() {
+        iframe.addEventListener('load', function () {
             setTimeout(() => {
                 loadingOverlay.classList.add('hidden');
             }, 500);
@@ -112,7 +110,7 @@
         }, 5000);
 
         // Try to hide warning banner inside iframe (may be blocked by CORS)
-        iframe.addEventListener('load', function() {
+        iframe.addEventListener('load', function () {
             try {
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
                 const warningElement = iframeDoc.getElementById('warning');
@@ -128,7 +126,3 @@
 </body>
 
 </html>
-
-
-
-
