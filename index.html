@@ -21,7 +21,7 @@
 
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            background: #222743;
             color: white;
             position: fixed;
             width: 100%;
@@ -90,13 +90,17 @@
 
         /* Section Styles */
         section {
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
         }
 
         section:first-of-type {
@@ -106,13 +110,13 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #1F2937;
+            color: #222743;
         }
 
         h2 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            color: #1f2937;
+            color: #222743;
             position: relative;
             padding-bottom: 1rem;
         }
@@ -124,7 +128,7 @@
             left: 0;
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #cd7d53 0%, #1f2937 100%);
+            background: linear-gradient(90deg, #cd7d53 0%, #222743 100%);
             border-radius: 2px;
         }
 
@@ -136,23 +140,29 @@
         /* Home Section */
         #home {
             text-align: center;
-            background: linear-gradient(135deg, rgba(31, 41, 55, 0.05) 0%, rgba(205, 125, 83, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(34, 39, 67, 0.7) 0%, rgba(205, 125, 83, 0.6) 100%),
+                        url('home_background.JPG') center/cover no-repeat;
+            color: white;
+            min-height: 100vh;
+            border-bottom: none;
         }
 
         #home h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+            -webkit-text-fill-color: white;
         }
 
         #home .subtitle {
             font-size: 1.3rem;
-            color: #cd7d53;
+            color: #f0d0b8;
             margin-bottom: 2rem;
             font-weight: 500;
+        }
+
+        #home p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Features Grid */
@@ -178,23 +188,23 @@
         }
 
         .feature-card h3 {
-            color: #1f2937;
+            color: #222743;
             margin-bottom: 1rem;
         }
 
         .feature-card:nth-child(odd) {
-            border-left-color: #1f2937;
+            border-left-color: #222743;
         }
 
         .feature-card:nth-child(odd):hover {
-            box-shadow: 0 6px 12px rgba(31, 41, 55, 0.2);
+            box-shadow: 0 6px 12px rgba(34, 39, 67, 0.2);
         }
 
         /* Button Styles */
         .btn {
             display: inline-block;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+            background: linear-gradient(135deg, #222743 0%, #cd7d53 100%);
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -214,7 +224,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #cd7d53 0%, #1f2937 100%);
+            background: linear-gradient(135deg, #cd7d53 0%, #222743 100%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -256,7 +266,7 @@
         }
 
         .contact-item h3 {
-            color: #1f2937;
+            color: #222743;
             margin-bottom: 0.5rem;
         }
 
@@ -271,7 +281,7 @@
                 left: -100%;
                 top: 60px;
                 flex-direction: column;
-                background: linear-gradient(135deg, #1f2937 0%, #cd7d53 100%);
+                background: #222743;
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
@@ -296,7 +306,7 @@
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 2.5rem 1rem;
             }
 
             nav {
@@ -310,7 +320,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="logo.png" alt="Urmaliev Askat">
+                <img src="logo.jpg" alt="Urmaliev Askat">
                 <span class="logo-text">GRAMOTEI</span>
             </div>
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -332,13 +342,16 @@
         <h1>Грамотей</h1>
         <p class="subtitle">Курсы GRAMOTEI - подготовка к ОРТ</p>
         <p>Профессиональная подготовка к общереспубликанскому тестированию</p>
-        <p style="max-width: 800px; margin: 2rem auto;">Мы предлагаем комплексную программу подготовки к ОРТ с использованием современных методик обучения. Наши студенты получают доступ к качественным учебным материалам, пробным тестам и профессиональной поддержке опытных преподавателей.</p>
+        <p style="max-width: 800px; margin: 2rem auto;">Мы предлагаем комплексную программу подготовки к ОРТ с
+            использованием современных методик обучения. Наши студенты получают доступ к качественным учебным
+            материалам, пробным тестам и профессиональной поддержке опытных преподавателей.</p>
     </section>
 
     <!-- About Section -->
     <section id="about">
         <h2>О нас</h2>
-        <p>GRAMOTEI - это образовательные курсы, специализирующиеся на подготовке студентов к ОРТ (Общереспубликанское тестирование) в Кыргызстане.</p>
+        <p>GRAMOTEI - это образовательные курсы, специализирующиеся на подготовке студентов к ОРТ (Общереспубликанское
+            тестирование) в Кыргызстане.</p>
 
         <div class="features">
             <div class="feature-card">
@@ -378,7 +391,8 @@
             <li>Получать мгновенные результаты с указанием правильных и неправильных ответов</li>
             <li>Отслеживать свой прогресс и улучшать результаты</li>
         </ul>
-        <p style="margin-bottom: 2rem;">Система автоматически проверяет ваши ответы и сохраняет результаты. Каждый тест можно проходить только один раз, что максимально приближено к реальным условиям экзамена.</p>
+        <p style="margin-bottom: 2rem;">Система автоматически проверяет ваши ответы и сохраняет результаты. Каждый тест
+            можно проходить только один раз, что максимально приближено к реальным условиям экзамена.</p>
         <a href="onlineExam.html" class="btn" target="_blank"><span>Перейти к экзамену</span></a>
     </section>
 
@@ -390,19 +404,21 @@
         <div class="contact-info">
             <div class="contact-item">
                 <h3>📞 Телефон</h3>
-                <p>+996 XXX XXX XXX</p>
+                <p><a href="tel:+996706606788" style="color: inherit; text-decoration: none;">+(996) 706 606 788</a></p>
             </div>
             <div class="contact-item">
                 <h3>📧 Email</h3>
-                <p>info@gramotei.kg</p>
+                <p><a href="mailto:askat.urma95@gmail.com"
+                        style="color: inherit; text-decoration: none;">askat.urma95@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>📷 Инстаграм</h3>
+                <p><a href="https://instagram.com/gramotei.kg" target="_blank"
+                        style="color: inherit; text-decoration: none;">gramotei.kg</a></p>
             </div>
             <div class="contact-item">
                 <h3>📍 Адрес</h3>
-                <p>г. Бишкек, Кыргызстан</p>
-            </div>
-            <div class="contact-item">
-                <h3>⏰ Часы работы</h3>
-                <p>Пн-Сб: 9:00 - 18:00</p>
+                <p>проспект Чыңгыз Айтматов, 50</p>
             </div>
         </div>
     </section>
@@ -419,7 +435,7 @@
         }
 
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const navMenu = document.getElementById('navMenu');
             const menuToggle = document.querySelector('.menu-toggle');
 
